@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultimate Love Surprise 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+  overflow-y: auto;
+}
+
+/* Fireworks background */
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 10;
+  padding-top: 100px;
+}
+
+/* Title */
+.title {
+  font-size: 8vw;
+  animation: glow 1s infinite alternate, beat 1s infinite;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px white; }
+  to { text-shadow: 0 0 40px red, 0 0 60px pink; }
+}
+
+@keyframes beat {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.1);}
+  100% {transform: scale(1);}
+}
+
+/* Message */
+.message {
+  font-size: clamp(20px, 4vw, 32px);
+}
+/* Spark */
+.spark {
+  position: absolute;
+  animation: explode 1s forwards;
+}
+
+@keyframes explode {
+  to { transform: translateY(-200px); opacity: 0; }
+}
+</style>
+</head>
+
+<body onclick="spark(event)">
+
+<canvas id="fireworks"></canvas>
+
+<div class="content">
+
+<h1 class="title">🎉 Happy Birthday My SHIFIYAMAAA 👑 🎉</h1>
+
+<div class="message">
+My Love ❤️,<br><br>
+
+un kaiya puduchutu sollura mari nenachuko seriya shifiyama happy birthday sothumuta nee yen life la vantha nala tha na evalo happy ya iruka na evalo time oh sollita nee yenn evalo change panniruka yenna pathale theriyum yennoda dress sence apram haristyle ithu matum illa yennoda character chnge pannita yeanku yarum iruka mataga nenacha nee varathu munnadi yennala ipadiye tha iruka mudiyuma nenacha nee varathuku munadi oru visyatha nenachu payathute irupa mara mudiyatha nenacha nee varathu munnadi nee vanthathu apram yen life ye total ah change pannita shifiya ithana panniruka na unna safe ah unaku yenna theviyo atha pannalaina na yethuku iruka unna na kadasi varaikum nalla pathupa unaku yenna theva yenna pudikum yenna pudikathu ithu yella theruchukutu atha yella na tharuva yenaku unnoda life la yenaku pathi idam kudupiya cinema dialogue tha ana emotion onnu tha 
+happpyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy birthdayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy yennoda shifiyamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa💖  
+
+<br><br>
+
+Every moment with you is magical ✨  
+Every second with you is special 💫  
+
+<br><br>
+
+I promise to love you forever ❤️  
+No matter what happens, I will always be with you 💞  
+
+<br><br>
+
+I LOVE YOU SO MUCH 💖👑  
+
+<br><br>
+
+— Your Mohammed Farhath 💘
+</div>
+
+<br><br><br>
+
+<div class="message">
+You are not just my love ❤️  
+You are my life, my future, my world 🌍  
+
+<br><br>
+
+Happy Birthday Once Again 🎂💖
+</div>
+
+</div>
+
+<audio src="music.mp3" autoplay loop></audio>
+
+<script>
+// ✨ Spark on click
+function spark(e) {
+  for (let i = 0; i < 10; i++) {
+    let s = document.createElement("div");
+    s.className = "spark";
+    s.innerHTML = "✨";
+    s.style.left = e.clientX + "px";
+    s.style.top = e.clientY + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+  }
+}
+
+// 🎆 Fireworks + Name
+let canvas = document.getElementById("fireworks");
+let ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+let text = "AYISHA SHIFIYAMAAAAA 💖";
+
+function createTextFirework() {
+  let tempCanvas = document.createElement("canvas");
+  let tctx = tempCanvas.getContext("2d");
+
+  tempCanvas.width = canvas.width;
+  tempCanvas.height = canvas.height;
+
+  tctx.fillStyle = "white";
+  tctx.font = "bold 100px Arial";
+  tctx.textAlign = "center";
+  tctx.fillText(text, canvas.width/2, canvas.height/3);
+
+  let data = tctx.getImageData(0,0,canvas.width,canvas.height).data;
+
+  for (let y = 0; y < canvas.height; y += 6) {
+    for (let x = 0; x < canvas.width; x += 6) {
+      let index = (y * canvas.width + x) * 4;
+      if (data[index+3] > 128) {
+        particles.push({
+          x: Math.random()*canvas.width,
+          y: canvas.height,
+          tx: x,
+          ty: y
+        });
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.fillStyle = "rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p => {
+    p.x += (p.tx - p.x)*0.05;
+    p.y += (p.ty - p.y)*0.05;
+
+    ctx.fillStyle = "hsl(" + Math.random()*360 + ",100%,50%)";
+    ctx.fillRect(p.x,p.y,3,3);
+  });
+
+  requestAnimationFrame(animate);
+}
+
+createTextFirework();
+animate();
+</script>
+
+</body>
+</html>

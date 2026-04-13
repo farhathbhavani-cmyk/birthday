@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Love Chat 💬</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #ece5dd;
+}
+
+/* Header */
+.header {
+  background: #075E54;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Chat area */
+.chat-box {
+  padding: 10px;
+}
+
+/* Messages */
+.msg {
+  max-width: 70%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.left {
+  background: white;
+  text-align: left;
+}
+
+.right {
+  background: #25D366;
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Timestamp */
+.time {
+  font-size: 10px;
+  color: gray;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Typing */
+.typing {
+  font-size: 14px;
+  color: gray;
+  margin-left: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Ayisha Shifya 💖</div>
+
+<div class="chat-box" id="chat"></div>
+
+<p class="typing" id="typing">Typing...</p>
+
+<br>
+
+<center>
+<button onclick="goFinal()">Final Surprise 🎆</button>
+</center>
+
+<script>
+let messages = [
+  {text: "Hi sothumutaaaa❤️", side: "left"},
+  {text: "Hi burger 😘", side: "right"},
+  {text: "Happy Birthday my gurllllll shifiyamaaaaaa 🎂", side: "left"},
+  {text: "Thank you baby 💕", side: "right"},
+  {text: "You are my everything 💖", side: "left"},
+  {text: "I love you forever ❤️", side: "right"}
+];
+
+let index = 0;
+
+function showMessage() {
+  if (index < messages.length) {
+
+    let msg = document.createElement("div");
+    msg.className = "msg " + messages[index].side;
+    msg.innerHTML = messages[index].text + "<br><span class='time'>Now</span>";
+
+    document.getElementById("chat").appendChild(msg);
+
+    index++;
+
+    setTimeout(showMessage, 1500);
+  } else {
+    document.getElementById("typing").innerHTML = "Online 💚";
+  }
+}
+
+showMessage();
+
+function goFinal() {
+  window.location.href = "final.html";
+}
+</script>
+
+</body>
+</html>

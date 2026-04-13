@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Private Love Entry ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #ff4d6d, #ff99ac);
+  font-family: Arial;
+  overflow: hidden;
+}
+
+/* Container */
+.box {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+/* Title */
+h1 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Input */
+input {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Button */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
+}
+
+/* Shake animation */
+.shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% {transform: translateX(0);}
+  25% {transform: translateX(-5px);}
+  50% {transform: translateX(5px);}
+  75% {transform: translateX(-5px);}
+  100% {transform: translateX(0);}
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="box">
+  <h1>🔐 Private Love Space</h1>
+  <input type="password" id="pass" placeholder="Enter secret ❤️">
+  <br>
+  <button onclick="checkPass()">Unlock 💖</button>
+</div>
+
+<script>
+function checkPass() {
+  let p = document.getElementById("pass").value;
+  let box = document.getElementById("box");
+
+  if (p === "fs") {
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 1000);
+  } else {
+    box.classList.add("shake");
+    setTimeout(() => box.classList.remove("shake"), 300);
+  }
+}
+
+/* Floating hearts */
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}, 500);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3D Cake Celebration 🎂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  text-align: center;
+  background: radial-gradient(circle, #ff4d6d, #ff99ac);
+  color: white;
+  overflow: hidden;
+  font-family: Arial;
+}
+
+/* Cake */
+.cake {
+  font-size: 160px;
+  margin-top: 60px;
+  animation: bounce 2s infinite alternate;
+}
+
+@keyframes bounce {
+  from {transform: translateY(0);}
+  to {transform: translateY(-20px);}
+}
+
+/* Candles */
+.candle {
+  font-size: 40px;
+  display: inline-block;
+  animation: flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+  from {opacity: 1;}
+  to {opacity: 0.6;}
+}
+
+/* Knife */
+.knife {
+  font-size: 70px;
+  position: absolute;
+  left: 10%;
+  top: 60%;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.cut {
+  transform: translateX(250px) rotate(20deg);
+}
+
+/* Message */
+.msg {
+  font-size: 28px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.show {
+  opacity: 1;
+}
+
+/* Sparkles */
+.spark {
+  position: absolute;
+  font-size: 20px;
+  animation: explode 1s linear forwards;
+}
+
+@keyframes explode {
+  to {
+    transform: translateY(-200px) scale(0);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Make a Wish & Blow Candles 🕯️</h1>
+
+<div id="candles">
+  <span class="candle">🕯️</span>
+  <span class="candle">🕯️</span>
+  <span class="candle">🕯️</span>
+</div>
+
+<div class="cake">🎂</div>
+
+<button onclick="blowCandles()">💨 Blow Candles</button>
+
+<div class="knife" id="knife" onclick="cutCake()">🔪</div>
+
+<div class="msg" id="msg">🎉 Cake Cut Successfully! 🎉</div>
+
+<audio id="blow" src="https://www.soundjay.com/human/sounds/blow-1.mp3"></audio>
+<audio id="clap" src="https://www.soundjay.com/human/sounds/applause-8.mp3"></audio>
+
+<script>
+function blowCandles() {
+  document.getElementById("candles").innerHTML = "🕯️❌ 🕯️❌ 🕯️❌";
+  let s = document.getElementById("blow");
+  if(s) s.play();
+}
+
+function cutCake() {
+  let knife = document.getElementById("knife");
+  let msg = document.getElementById("msg");
+  let clap = document.getElementById("clap");
+
+  knife.classList.add("cut");
+  msg.classList.add("show");
+
+  if(clap) clap.play();
+
+  // Spark explosion
+  for(let i=0;i<30;i++){
+    let sp = document.createElement("div");
+    sp.className = "spark";
+    sp.innerHTML = "✨";
+    sp.style.left = Math.random()*100 + "vw";
+    sp.style.top = Math.random()*100 + "vh";
+    document.body.appendChild(sp);
+
+    setTimeout(()=>sp.remove(),1000);
+  }
+
+  // Next page
+  setTimeout(()=>{
+    window.location.href = "memories.html";
+  },3000);
+}
+</script>
+
+</body>
+</html>

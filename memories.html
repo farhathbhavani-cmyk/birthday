@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Memories 💖</title>
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  text-align: center;
+  background: linear-gradient(to right, #ff758c, #ff7eb3);
+  color: white;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  width: 90%;
+  max-width: 350px;
+  margin: auto;
+}
+
+.slider img {
+  width: 100%;
+  border-radius: 20px;
+  transition: transform 1s;
+}
+
+/* Zoom effect */
+.slider img:hover {
+  transform: scale(1.1);
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: #ff4d6d;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: float 4s linear forwards;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); opacity: 0; }
+}
+</style>
+</head>
+
+<body onclick="createHeart(event)">
+
+<h1>Our Beautiful Memories 💕</h1>
+
+<div class="slider">
+  <img id="slide" src="images/photo1.jpg">
+</div>
+
+<br>
+
+<button class="btn" onclick="prev()">⬅️ Prev</button>
+<button class="btn" onclick="next()">Next ➡️</button>
+
+<br><br>
+
+<button class="btn" onclick="go('chat.html')">Next Page 💬</button>
+
+<script src="script.js"></script>
+
+<script>
+let images = [
+  "images/photo1.jpg",
+  "images/photo2.jpg",
+  "images/photo3.jpg"
+];
+
+let i = 0;
+
+function showImage() {
+  document.getElementById("slide").src = images[i];
+}
+
+// Next
+function next() {
+  i = (i + 1) % images.length;
+  showImage();
+}
+
+// Prev
+function prev() {
+  i = (i - 1 + images.length) % images.length;
+  showImage();
+}
+
+// Auto slideshow
+setInterval(next, 3000);
+
+// Heart effect
+function createHeart(e) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = e.clientX + "px";
+  heart.style.top = e.clientY + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 4000);
+}
+</script>
+
+</body>
+</html>
